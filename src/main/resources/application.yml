@@ -5,3 +5,14 @@ server:
 spring:
   profiles:
     active: dev  # default profile
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /api-docs
+  show-actuator: false
+  packages-to-scan: com.happiness.conan.web.controller
+  default-produces-media-type: application/json
