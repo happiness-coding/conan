@@ -1,0 +1,22 @@
+logging:
+  level:
+    root: INFO
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/conan
+    username: admin
+    password: admin
+    driverClassName: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+  flyway:
+    url: jdbc:postgresql://localhost:5432/conan
+    user: admin
+    password: admin
+    locations: classpath:db/migration

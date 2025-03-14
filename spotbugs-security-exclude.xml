@@ -1,0 +1,16 @@
+<FindBugsFilter>
+    <!-- Exclude problematic classes that cause ASM errors -->
+    <Match>
+        <Class name="~.*\$\$.*"/>
+    </Match>
+
+    <!-- Exclude external library classes -->
+    <Match>
+        <Package name="~javax\..*"/>
+    </Match>
+    <Match>
+        <Package name="~java\..*"/>
+    </Match>
+
+    <!-- Add other exclusions as needed -->
+</FindBugsFilter>
