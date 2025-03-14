@@ -4,15 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b57fd2ad-b799-41bc-b65b-39287cf24138" name="Changes" comment="refactor: delete target" />
+    <list default="true" id="b57fd2ad-b799-41bc-b65b-39287cf24138" name="Changes" comment="feat: create labels and tasks tables with sample data and associations for task management">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "nvbinhsoft"
+  }
+}]]></component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/happiness-coding/conan",
@@ -33,6 +49,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Maven.conan [clean].executor": "Run",
+    "Maven.conan [install].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -50,6 +68,11 @@
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "com.poratu.idea.plugins.tomcat.setting.TomcatServersConfigurable",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
 }]]></component>
   <component name="RunManager">
@@ -97,7 +120,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741914828618</updated>
-      <workItem from="1741914829840" duration="703000" />
+      <workItem from="1741914829840" duration="11047000" />
     </task>
     <task id="LOCAL-00002" summary="refactor: rename package from com.tech.easy to com.happiness.conan">
       <option name="closed" value="true" />
@@ -115,7 +138,95 @@
       <option name="project" value="LOCAL" />
       <updated>1741915519256</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="refactor: update .gitignore and workspace.xml for better IDE integration">
+      <option name="closed" value="true" />
+      <created>1741915599499</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1741915599499</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat: add DTOs for batch update request and response handling">
+      <option name="closed" value="true" />
+      <created>1741978087160</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1741978087160</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feat: add CORS configuration for handling cross-origin requests">
+      <option name="closed" value="true" />
+      <created>1741978092955</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1741978092955</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat: configure Springdoc for Swagger UI and API documentation">
+      <option name="closed" value="true" />
+      <created>1741978100353</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1741978100353</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat: add Label entity, DTO, and repository for label management">
+      <option name="closed" value="true" />
+      <created>1741978109165</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1741978109165</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat: enhance Swagger configuration for Task Manager API with detailed info and security setup">
+      <option name="closed" value="true" />
+      <created>1741978118580</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1741978118580</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat: implement Task entity and controller for task management with CRUD operations">
+      <option name="closed" value="true" />
+      <created>1741978126913</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1741978126913</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat: add TaskListResponseDTO, TaskResponseDTO, TaskRepository, and TaskService for task management">
+      <option name="closed" value="true" />
+      <created>1741978133901</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1741978133901</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat: add ErrorResponseDTO and TaskServiceImpl for enhanced error handling and task management">
+      <option name="closed" value="true" />
+      <created>1741978140239</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1741978140239</updated>
+    </task>
+    <task id="LOCAL-00013" summary="feat: add TaskUpdateDTO for updating existing tasks and enhance UserController with versioning">
+      <option name="closed" value="true" />
+      <created>1741978146411</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1741978146411</updated>
+    </task>
+    <task id="LOCAL-00014" summary="feat: create labels and tasks tables with sample data and associations for task management">
+      <option name="closed" value="true" />
+      <created>1741978162046</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1741978162046</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,6 +259,17 @@
     <MESSAGE value="feat: add pre-commit script for Java checks and code quality" />
     <MESSAGE value="refactor: rename package from com.tech.easy to com.happiness.conan" />
     <MESSAGE value="refactor: delete target" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: delete target" />
+    <MESSAGE value="refactor: update .gitignore and workspace.xml for better IDE integration" />
+    <MESSAGE value="feat: add DTOs for batch update request and response handling" />
+    <MESSAGE value="feat: add CORS configuration for handling cross-origin requests" />
+    <MESSAGE value="feat: configure Springdoc for Swagger UI and API documentation" />
+    <MESSAGE value="feat: add Label entity, DTO, and repository for label management" />
+    <MESSAGE value="feat: enhance Swagger configuration for Task Manager API with detailed info and security setup" />
+    <MESSAGE value="feat: implement Task entity and controller for task management with CRUD operations" />
+    <MESSAGE value="feat: add TaskListResponseDTO, TaskResponseDTO, TaskRepository, and TaskService for task management" />
+    <MESSAGE value="feat: add ErrorResponseDTO and TaskServiceImpl for enhanced error handling and task management" />
+    <MESSAGE value="feat: add TaskUpdateDTO for updating existing tasks and enhance UserController with versioning" />
+    <MESSAGE value="feat: create labels and tasks tables with sample data and associations for task management" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: create labels and tasks tables with sample data and associations for task management" />
   </component>
 </project>
