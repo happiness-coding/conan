@@ -1,0 +1,53 @@
+#!/bin/bash
+
+echo "Running pre-commit checks..."
+
+# Get the root directory of the Git repository
+ROOT_DIR=$(git rev-parse --show-toplevel)
+cd "$ROOT_DIR" || exit 1
+
+# Find Java 17 executable
+if [ -x "$(command -v /usr/libexec/java_home)" ]; then
+  # macOS
+  JAVA_17_HOME=$(/usr/libexec/java_home -v 17 2>/dev/null)
+  if [ -n "$JAVA_17_HOME" ]; then
+    export JAVA_HOME="$JAVA_17_HOME"
+    echo "Using Java 17 from: $JAVA_HOME"
+  fi
+elif [ -n "$JAVA_HOME_17" ]; then
+  # Use pre-defined JAVA_HOME_17 if available
+  export JAVA_HOME="$JAVA_HOME_17"
+  echo "Using Java 17 from: $JAVA_HOME"
+else
+  echo "Warning: Could not find Java 17 installation. Using default Java."
+fi
+
+# Print Java version for debugging
+java -version
+
+# Run checkstyle
+echo "Running CheckStyle..."
+mvn org.apache.maven.plugins:maven-checkstyle-plugin:3.3.1:check
+
+if [ $? -ne 0 ]; then
+    echo "CheckStyle found issues. Please fix them before committing."
+    exit 1
+fi
+
+# Run spotbugs with explicit configuration to exclude problematic classes
+echo "Running SpotBugs..."
+export MAVEN_OPTS="-Xmx1024m"
+mvn com.github.spotbugs:spotbugs-maven-plugin:4.8.2.0:check \
+    -Djdk.version=17 \
+    -Dspotbugs.maxHeap=1024 \
+    -Dspotbugs.effort=Max \
+    -Dspotbugs.threshold=Medium \
+    -Dspotbugs.onlyAnalyze=com.tech.easy.- \
+    -Dspotbugs.excludeFilterFile="$ROOT_DIR/spotbugs-security-exclude.xml"
+if [ $? -ne 0 ]; then
+    echo "SpotBugs found issues. Please fix them before committing."
+    exit 1
+fi
+
+echo "Pre-commit checks passed!"
+exit 0
