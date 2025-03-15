@@ -1,7 +1,9 @@
 package com.happiness.conan.web.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.happiness.conan.domain.model.Task;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.Collections;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -32,6 +34,7 @@ public class TaskDTO {
     @Schema(description = "Task priority level", example = "high")
     private String priority;
 
+    @JsonProperty("isCompleted") // Add this annotation
     @Schema(description = "Task completion status", example = "false")
     private boolean isCompleted;
 
@@ -54,9 +57,11 @@ public class TaskDTO {
                 .title(task.getTitle())
                 .description(task.getDescription())
                 .dueDate(task.getDueDate())
-                .priority(task.getPriority().name())
+                .priority(task.getPriority() != null ? task.getPriority().name() : null)
                 .isCompleted(task.isCompleted())
-                .labels(task.getLabels().stream().map(LabelDTO::fromEntity).collect(Collectors.toList()))
+                .labels(task.getLabels() != null ?
+                        task.getLabels().stream().map(LabelDTO::fromEntity).collect(Collectors.toList()) :
+                        Collections.emptyList())
                 .createdAt(task.getCreatedAt())
                 .updatedAt(task.getUpdatedAt())
                 .build();

@@ -1,5 +1,6 @@
 package com.happiness.conan.web.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -29,6 +30,7 @@ public class TaskCreateDTO {
     @Schema(description = "Task priority level", example = "high", allowableValues = {"low", "medium", "high"})
     private String priority;
 
+    @JsonProperty("isCompleted") // Add this annotation
     @Schema(description = "Whether the task is completed", example = "false", defaultValue = "false")
     private Boolean isCompleted;
 
