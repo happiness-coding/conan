@@ -6,6 +6,9 @@ import java.util.Locale;
 import org.springframework.lang.NonNull;
 import org.springframework.web.servlet.LocaleResolver;
 
+/**
+ * Custom implementation of {@link LocaleResolver} that resolves the locale based on the "lang" header.
+ */
 public class CustomLocaleResolver implements LocaleResolver {
 
     @Override
