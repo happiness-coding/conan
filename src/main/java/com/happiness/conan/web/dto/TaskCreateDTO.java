@@ -33,5 +33,5 @@ public class TaskCreateDTO {
     private Boolean isCompleted;
 
     @Schema(description = "IDs of labels associated with the task", example = "[1, 3, 5]")
-    private List<Long> labels;
+    private List<LabelDTO> labels;
 }
