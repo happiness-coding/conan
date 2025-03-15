@@ -7,6 +7,7 @@ import com.happiness.conan.domain.repository.TaskRepository;
 import com.happiness.conan.exception.BizException;
 import com.happiness.conan.exception.DomainCode;
 import com.happiness.conan.web.dto.BatchUpdateRequestDTO;
+import com.happiness.conan.web.dto.LabelDTO;
 import com.happiness.conan.web.dto.TaskCreateDTO;
 import com.happiness.conan.web.dto.TaskUpdateDTO;
 import lombok.RequiredArgsConstructor;
@@ -99,7 +100,11 @@ public class TaskServiceImpl implements TaskService {
 
         // Set labels if provided
         if (taskCreateDTO.getLabels() != null && !taskCreateDTO.getLabels().isEmpty()) {
-            Set<Label> taskLabels = new HashSet<>(labelRepository.findAllById(taskCreateDTO.getLabels()));
+            List<Long> labelIds = taskCreateDTO.getLabels()
+                    .stream()
+                    .map(LabelDTO::getId)
+                    .toList();
+            Set<Label> taskLabels = new HashSet<>(labelRepository.findAllById(labelIds));
             task.setLabels(taskLabels);
         }
 
@@ -144,7 +149,11 @@ public class TaskServiceImpl implements TaskService {
         }
 
         if (taskUpdateDTO.getLabels() != null) {
-            Set<Label> taskLabels = new HashSet<>(labelRepository.findAllById(taskUpdateDTO.getLabels()));
+            Set<Label> taskLabels = new HashSet<>(labelRepository.findAllById(taskUpdateDTO
+                    .getLabels()
+                    .stream()
+                    .map(LabelDTO::getId)
+                    .collect(Collectors.toList())));
             task.setLabels(taskLabels);
         }
 

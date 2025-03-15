@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b57fd2ad-b799-41bc-b65b-39287cf24138" name="Changes" comment="feat: create labels and tasks tables with sample data and associations for task management">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="b57fd2ad-b799-41bc-b65b-39287cf24138" name="Changes" comment="feat: update workspace.xml for improved IDE integration and task management features" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,21 +21,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "nvbinhsoft"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;nvbinhsoft&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/happiness-coding/conan",
-    "accountId": "9f9e678a-129c-463f-b71a-44045568de91"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/happiness-coding/conan&quot;,
+    &quot;accountId&quot;: &quot;9f9e678a-129c-463f-b71a-44045568de91&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2uHoOXAwFegyr9VX2t2aoc83hFw" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -59,7 +57,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.ConanApplication (1).executor": "Run",
     "Spring Boot.ConanApplication.executor": "Run",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "dev",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -120,7 +118,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741914828618</updated>
-      <workItem from="1741914829840" duration="11047000" />
+      <workItem from="1741914829840" duration="13891000" />
     </task>
     <task id="LOCAL-00002" summary="refactor: rename package from com.tech.easy to com.happiness.conan">
       <option name="closed" value="true" />
@@ -226,7 +224,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741978162046</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="feat: update workspace.xml for improved IDE integration and task management features">
+      <option name="closed" value="true" />
+      <created>1741978241381</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1741978241381</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,7 +249,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="dev" />
                       </list>
                     </value>
                   </entry>
@@ -270,6 +276,7 @@
     <MESSAGE value="feat: add ErrorResponseDTO and TaskServiceImpl for enhanced error handling and task management" />
     <MESSAGE value="feat: add TaskUpdateDTO for updating existing tasks and enhance UserController with versioning" />
     <MESSAGE value="feat: create labels and tasks tables with sample data and associations for task management" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: create labels and tasks tables with sample data and associations for task management" />
+    <MESSAGE value="feat: update workspace.xml for improved IDE integration and task management features" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: update workspace.xml for improved IDE integration and task management features" />
   </component>
 </project>

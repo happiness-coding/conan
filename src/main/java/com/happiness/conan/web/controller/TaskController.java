@@ -110,7 +110,9 @@ public class TaskController {
 
         // Get tasks with filters
         Page<Task> tasksPage = taskService.findTasks(status, priority, labels, start, end, search, pageable);
-
+        if (tasksPage == null) {
+            tasksPage = Page.empty(pageable);
+        }
         // Convert to DTOs
         List<TaskDTO> taskDTOs = tasksPage.getContent().stream()
                 .map(TaskDTO::fromEntity)

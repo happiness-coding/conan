@@ -1,5 +1,6 @@
 package com.happiness.conan.web.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,9 +28,9 @@ public class TaskUpdateDTO {
     @Schema(description = "Updated priority level", example = "high", allowableValues = {"low", "medium", "high"})
     private String priority;
 
+    @JsonProperty("isCompleted") // Add this annotation
     @Schema(description = "Updated completion status", example = "true")
     private Boolean isCompleted;
 
-    @Schema(description = "Updated list of label IDs", example = "[1, 3, 7]")
-    private List<Long> labels;
-}
+    @Schema(description = "Updated list of label IDs", example = "[{\"id\": 1}, {\"id\": 3}, {\"id\": 7}]")
+    private List<LabelDTO> labels;}
