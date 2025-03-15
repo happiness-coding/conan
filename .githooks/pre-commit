@@ -49,5 +49,22 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# Run unit tests
+echo "Running unit tests..."
+mvn clean test -P unit-tests
+if [ $? -ne 0 ]; then
+    echo "Unit tests failed. Please fix failing tests before committing."
+    exit 1
+fi
+
+# Check test coverage
+echo "Checking test coverage..."
+mvn jacoco:check
+if [ $? -ne 0 ]; then
+    echo "Test coverage is below the required thresholds (80% instruction, 70% branch)."
+    echo "Please improve test coverage before committing."
+    exit 1
+fi
+
 echo "Pre-commit checks passed!"
 exit 0
