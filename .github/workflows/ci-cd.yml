@@ -31,21 +31,6 @@ jobs:
     name: Build and Test
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:16-alpine
-        env:
-          POSTGRES_DB: conan_test
-          POSTGRES_USER: admin
-          POSTGRES_PASSWORD: admin
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -63,12 +48,6 @@ jobs:
         run: mvn clean verify -B
         env:
           SPRING_PROFILES_ACTIVE: test
-          SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/conan_test
-          SPRING_DATASOURCE_USERNAME: admin
-          SPRING_DATASOURCE_PASSWORD: admin
-          SPRING_FLYWAY_URL: jdbc:postgresql://localhost:5432/conan_test
-          SPRING_FLYWAY_USER: admin
-          SPRING_FLYWAY_PASSWORD: admin
 
       - name: Upload test reports
         uses: actions/upload-artifact@v4
