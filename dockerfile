@@ -1,10 +1,15 @@
-FROM eclipse-temurin:17-jdk-alpine as builder
+FROM eclipse-temurin:17-jdk-alpine AS builder
 WORKDIR /app
-COPY mvnw .
-COPY .mvn .mvn
+
+# First copy only the POM to leverage Docker cache
 COPY pom.xml .
+
+# Check if .mvn directory exists before copying
 COPY src src
-RUN chmod +x ./mvnw && ./mvnw package -DskipTests
+
+# Use Maven directly instead of wrapper
+RUN apk add --no-cache maven && \
+    mvn package -DskipTests
 
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
