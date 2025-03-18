@@ -1,23 +1,22 @@
-# Use an official OpenJDK runtime as a parent image
-FROM openjdk:17-jdk-slim
-
-# Set the working directory in the container
+FROM eclipse-temurin:17-jdk-alpine as builder
 WORKDIR /app
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+COPY src src
+RUN chmod +x ./mvnw && ./mvnw package -DskipTests
 
-# Copy the project's build file and source code to the container
-COPY pom.xml /app
-COPY src /app/src
+FROM eclipse-temurin:17-jre-alpine
+WORKDIR /app
+COPY --from=builder /app/target/*.jar app.jar
 
-# Package the application using Maven
-RUN apt-get update && \
-    apt-get install -y maven && \
-    mvn -f /app/pom.xml clean package
+# Add wait-for-it script to wait for the database
+ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh /wait-for-it.sh
+RUN chmod +x /wait-for-it.sh
 
-# Copy the packaged jar file to the container
-COPY target/*.jar app.jar
+# Create a non-root user to run the application
+RUN addgroup -S spring && adduser -S spring -G spring
+USER spring:spring
 
-# Expose the port the application runs on
 EXPOSE 8080
-
-# Run the jar file
 ENTRYPOINT ["java", "-jar", "app.jar"]
