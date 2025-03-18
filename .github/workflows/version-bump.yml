@@ -1,0 +1,84 @@
+name: Create Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: 'Type of version bump'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      base_version:
+        description: 'Base version (leave empty to use latest tag)'
+        required: false
+        type: string
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get current version
+        id: current_version
+        run: |
+          # Use specified base version or find the latest tag
+          if [[ -n "${{ github.event.inputs.base_version }}" ]]; then
+            BASE_VERSION="${{ github.event.inputs.base_version }}"
+          else
+            # Get the latest tag or default to 0.1.0
+            LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.1.0")
+            BASE_VERSION=${LATEST_TAG#v}
+          fi
+          
+          echo "base_version=${BASE_VERSION}" >> $GITHUB_OUTPUT
+          echo "Using base version: ${BASE_VERSION}"
+
+      - name: Bump version
+        id: bump_version
+        run: |
+          BASE_VERSION=${{ steps.current_version.outputs.base_version }}
+          
+          # Split version into components
+          IFS='.' read -r major minor patch <<< "${BASE_VERSION}"
+          
+          # Bump according to input
+          if [[ "${{ github.event.inputs.version_type }}" == "major" ]]; then
+            major=$((major + 1))
+            minor=0
+            patch=0
+          elif [[ "${{ github.event.inputs.version_type }}" == "minor" ]]; then
+            minor=$((minor + 1))
+            patch=0
+          else
+            patch=$((patch + 1))
+          fi
+          
+          NEW_VERSION="${major}.${minor}.${patch}"
+          echo "new_version=${NEW_VERSION}" >> $GITHUB_OUTPUT
+          echo "Bumped to new version: ${NEW_VERSION}"
+
+      - name: Create Git tag and release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NEW_VERSION: ${{ steps.bump_version.outputs.new_version }}
+        run: |
+          echo "Creating release v${NEW_VERSION}..."
+          git tag -a "v${NEW_VERSION}" -m "Release v${NEW_VERSION}"
+          git push origin "v${NEW_VERSION}"
+          
+          # Create a GitHub release
+          gh release create "v${NEW_VERSION}" \
+            --title "Release v${NEW_VERSION}" \
+            --notes "Release v${NEW_VERSION}" \
+            --target main
