@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b57fd2ad-b799-41bc-b65b-39287cf24138" name="Changes" comment="feat: update workspace.xml for improved IDE integration and task management features" />
+    <list default="true" id="b57fd2ad-b799-41bc-b65b-39287cf24138" name="Changes" comment="feat: enhance CI configuration to include unit and combined test coverage reports">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/ci-cd.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.github/workflows/version-bump.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/verify.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/verify.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,8 +52,17 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JUnit.TaskControllerTest.executor": "Run",
+    "JUnit.TaskControllerTest.listTasks_ShouldReturnTaskList.executor": "Run",
+    "JUnit.TaskRepositoryIT.executor": "Run",
+    "JUnit.TaskRepositoryIT.findByIsCompleted_shouldReturnFilteredTasks.executor": "Debug",
+    "JUnit.TaskServiceImplTest.executor": "Run",
+    "JUnit.TaskServiceIntegrationTest.executor": "Run",
+    "JUnit.TaskServiceIntegrationTest.whenBatchUpdateTasks_thenChangesAreAppliedToAllTasks.executor": "Run",
     "Maven.conan [clean].executor": "Run",
     "Maven.conan [install].executor": "Run",
+    "Maven.conan [org.jacoco:jacoco-maven-plugin:0.8.11:check].executor": "Run",
+    "Maven.conan [verify].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -73,24 +87,91 @@
     ]
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="ConanApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+  <component name="RunManager" selected="JUnit.TaskControllerTest">
+    <configuration name="TaskControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="conan" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.happiness.conan.ConanApplication" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.happiness.conan.*" />
+          <option name="PATTERN" value="com.happiness.conan.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.happiness.conan.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.happiness.conan.controller.TaskControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TaskControllerTest.listTasks_ShouldReturnTaskList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="conan" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.happiness.conan.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.happiness.conan.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.happiness.conan.controller.TaskControllerTest" />
+      <option name="METHOD_NAME" value="listTasks_ShouldReturnTaskList" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TaskRepositoryIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="conan" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.happiness.conan.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.happiness.conan.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.happiness.conan.repository.TaskRepositoryIT" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TaskRepositoryIT.findByIsCompleted_shouldReturnFilteredTasks" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="conan" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.happiness.conan.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.happiness.conan.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.happiness.conan.repository.TaskRepositoryIT" />
+      <option name="METHOD_NAME" value="findByIsCompleted_shouldReturnFilteredTasks" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TaskServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="conan" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.happiness.conan.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.happiness.conan.service" />
+      <option name="MAIN_CLASS_NAME" value="com.happiness.conan.service.TaskServiceImplTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.ConanApplication (1)" />
+        <item itemvalue="JUnit.TaskControllerTest" />
+        <item itemvalue="JUnit.TaskControllerTest.listTasks_ShouldReturnTaskList" />
+        <item itemvalue="JUnit.TaskRepositoryIT" />
+        <item itemvalue="JUnit.TaskRepositoryIT.findByIsCompleted_shouldReturnFilteredTasks" />
+        <item itemvalue="JUnit.TaskServiceImplTest" />
       </list>
     </recent_temporary>
   </component>
@@ -232,7 +313,111 @@
       <option name="project" value="LOCAL" />
       <updated>1741978241381</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="feat: update .gitignore and workspace.xml for improved IDE configuration and project management">
+      <option name="closed" value="true" />
+      <created>1742034936184</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1742034936184</updated>
+    </task>
+    <task id="LOCAL-00017" summary="test: add comprehensive unit tests for TaskServiceImpl methods">
+      <option name="closed" value="true" />
+      <created>1742035783341</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1742035783341</updated>
+    </task>
+    <task id="LOCAL-00018" summary="test: add integration tests for TaskService methods">
+      <option name="closed" value="true" />
+      <created>1742035789480</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1742035789481</updated>
+    </task>
+    <task id="LOCAL-00019" summary="test: add integration tests for TaskRepository methods">
+      <option name="closed" value="true" />
+      <created>1742036684957</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1742036684957</updated>
+    </task>
+    <task id="LOCAL-00020" summary="feat: enhance task management by adding null checks and JSON property annotations">
+      <option name="closed" value="true" />
+      <created>1742038506431</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1742038506431</updated>
+    </task>
+    <task id="LOCAL-00021" summary="feat: add code coverage checks to Maven build configuration">
+      <option name="closed" value="true" />
+      <created>1742038511197</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1742038511197</updated>
+    </task>
+    <task id="LOCAL-00022" summary="chore: comment out code coverage rules in Maven build configuration">
+      <option name="closed" value="true" />
+      <created>1742038663074</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1742038663074</updated>
+    </task>
+    <task id="LOCAL-00023" summary="docs: update README with testing guidelines and coverage requirements">
+      <option name="closed" value="true" />
+      <created>1742039186423</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1742039186424</updated>
+    </task>
+    <task id="LOCAL-00024" summary="feat: add pre-commit checks for unit tests and test coverage">
+      <option name="closed" value="true" />
+      <created>1742039249829</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1742039249829</updated>
+    </task>
+    <task id="LOCAL-00025" summary="feat: add Javadoc for CustomLocaleResolver class to clarify locale resolution logic">
+      <option name="closed" value="true" />
+      <created>1742039348328</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1742039348328</updated>
+    </task>
+    <task id="LOCAL-00026" summary="feat: update code coverage rules in Maven build configuration to lower minimum thresholds">
+      <option name="closed" value="true" />
+      <created>1742039400678</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1742039400678</updated>
+    </task>
+    <task id="LOCAL-00027" summary="feat: lower minimum coverage threshold for branch coverage in Maven build configuration">
+      <option name="closed" value="true" />
+      <created>1742039592409</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1742039592409</updated>
+    </task>
+    <task id="LOCAL-00028" summary="feat: enhance CI configuration to include unit and combined test coverage reports">
+      <option name="closed" value="true" />
+      <created>1742039812443</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1742039812443</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,10 +447,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: add pre-commit script for Java checks and code quality" />
-    <MESSAGE value="refactor: rename package from com.tech.easy to com.happiness.conan" />
-    <MESSAGE value="refactor: delete target" />
-    <MESSAGE value="refactor: update .gitignore and workspace.xml for better IDE integration" />
     <MESSAGE value="feat: add DTOs for batch update request and response handling" />
     <MESSAGE value="feat: add CORS configuration for handling cross-origin requests" />
     <MESSAGE value="feat: configure Springdoc for Swagger UI and API documentation" />
@@ -277,6 +458,31 @@
     <MESSAGE value="feat: add TaskUpdateDTO for updating existing tasks and enhance UserController with versioning" />
     <MESSAGE value="feat: create labels and tasks tables with sample data and associations for task management" />
     <MESSAGE value="feat: update workspace.xml for improved IDE integration and task management features" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: update workspace.xml for improved IDE integration and task management features" />
+    <MESSAGE value="feat: update .gitignore and workspace.xml for improved IDE configuration and project management" />
+    <MESSAGE value="test: add comprehensive unit tests for TaskServiceImpl methods" />
+    <MESSAGE value="test: add integration tests for TaskService methods" />
+    <MESSAGE value="test: add integration tests for TaskRepository methods" />
+    <MESSAGE value="feat: enhance task management by adding null checks and JSON property annotations" />
+    <MESSAGE value="feat: add code coverage checks to Maven build configuration" />
+    <MESSAGE value="chore: comment out code coverage rules in Maven build configuration" />
+    <MESSAGE value="docs: update README with testing guidelines and coverage requirements" />
+    <MESSAGE value="feat: add pre-commit checks for unit tests and test coverage" />
+    <MESSAGE value="fix: remove trailing whitespace in CorsConfig.java" />
+    <MESSAGE value="feat: add Javadoc for CustomLocaleResolver class to clarify locale resolution logic" />
+    <MESSAGE value="feat: update code coverage rules in Maven build configuration to lower minimum thresholds" />
+    <MESSAGE value="feat: lower minimum coverage threshold for branch coverage in Maven build configuration" />
+    <MESSAGE value="feat: enhance CI configuration to include unit and combined test coverage reports" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: enhance CI configuration to include unit and combined test coverage reports" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/happiness/conan/repository/TaskRepositoryIT.java</url>
+          <line>96</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
