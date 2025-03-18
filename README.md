@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-This project uses Maven for building and testing.
+Please check the following rules:
 
 ## Testing
 
@@ -45,7 +45,7 @@ After running tests, you can view the test reports in the `target/site` director
 ### Pre-Commit Checks
 The project uses git hooks to enforce quality standards. Before committing:  
 - CheckStyle: Ensures code adheres to formatting standards
-- potBugs: Performs static code analysis to find bugs
+- SpotBugs: Performs static code analysis to find bugs
 - Tests: Unit tests should pass
 
 To enable the git hooks
