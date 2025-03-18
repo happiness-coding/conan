@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b57fd2ad-b799-41bc-b65b-39287cf24138" name="Changes" comment="feat: enhance CI configuration to include unit and combined test coverage reports">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/ci-cd.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/workflows/version-bump.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/verify.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/verify.yml" afterDir="false" />
+    <list default="true" id="b57fd2ad-b799-41bc-b65b-39287cf24138" name="Changes" comment="feat: update Dockerfile to use Maven directly and optimize layer caching">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/ci-cd.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ci-cd.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,7 +69,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.ConanApplication (1).executor": "Run",
     "Spring Boot.ConanApplication.executor": "Run",
-    "git-widget-placeholder": "dev",
+    "git-widget-placeholder": "sit",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -417,15 +415,49 @@
       <option name="project" value="LOCAL" />
       <updated>1742039812443</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="feat: remove PostgreSQL service configuration from CI/CD pipeline">
+      <option name="closed" value="true" />
+      <created>1742322678130</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1742322678130</updated>
+    </task>
+    <task id="LOCAL-00030" summary="feat: refactor Dockerfile to use multi-stage builds and add wait-for-it script">
+      <option name="closed" value="true" />
+      <created>1742323163519</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1742323163519</updated>
+    </task>
+    <task id="LOCAL-00031" summary="feat: update Dockerfile to use Maven directly and optimize layer caching">
+      <option name="closed" value="true" />
+      <created>1742323418502</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1742323418502</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="8156acb5-fba7-4e5b-bcc0-9d6453bf3392" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
+        <entry key="8156acb5-fba7-4e5b-bcc0-9d6453bf3392">
+          <value>
+            <State />
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -447,9 +479,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: add DTOs for batch update request and response handling" />
-    <MESSAGE value="feat: add CORS configuration for handling cross-origin requests" />
-    <MESSAGE value="feat: configure Springdoc for Swagger UI and API documentation" />
     <MESSAGE value="feat: add Label entity, DTO, and repository for label management" />
     <MESSAGE value="feat: enhance Swagger configuration for Task Manager API with detailed info and security setup" />
     <MESSAGE value="feat: implement Task entity and controller for task management with CRUD operations" />
@@ -472,17 +501,9 @@
     <MESSAGE value="feat: update code coverage rules in Maven build configuration to lower minimum thresholds" />
     <MESSAGE value="feat: lower minimum coverage threshold for branch coverage in Maven build configuration" />
     <MESSAGE value="feat: enhance CI configuration to include unit and combined test coverage reports" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: enhance CI configuration to include unit and combined test coverage reports" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/com/happiness/conan/repository/TaskRepositoryIT.java</url>
-          <line>96</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="feat: remove PostgreSQL service configuration from CI/CD pipeline" />
+    <MESSAGE value="feat: refactor Dockerfile to use multi-stage builds and add wait-for-it script" />
+    <MESSAGE value="feat: update Dockerfile to use Maven directly and optimize layer caching" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: update Dockerfile to use Maven directly and optimize layer caching" />
   </component>
 </project>
