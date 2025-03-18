@@ -60,20 +60,13 @@ jobs:
             target/site/unit-tests-report.html
             target/site/integration-tests-report.html
 
-#      - name: SonarCloud Scan
-#        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-#        run: ./mvnw -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=happiness-coding_conan
-
   build-and-push-image:
     name: Build and Push Docker image
     needs: build-and-test
     # Only build images for SIT branch and version tags
     if: |
-      needs.build-and-test.result == 'success' && 
-      github.event_name != 'pull_request' && 
+      needs.build-and-test.result == 'success' &&
+      github.event_name != 'pull_request' &&
       (github.ref == 'refs/heads/sit' || startsWith(github.ref, 'refs/tags/v'))
     runs-on: ubuntu-latest
     outputs:
@@ -83,6 +76,7 @@ jobs:
       contents: read
       packages: write
       security-events: write
+      issues: write  # Add permissions to create issues
 
     steps:
       - name: Checkout code
@@ -103,9 +97,9 @@ jobs:
             TAG="sit-${TIMESTAMP}-${SHORT_SHA}"
             echo "Using SIT build tag: $TAG"
           fi
-          
+
           echo "tag=${TAG}" >> $GITHUB_OUTPUT
-          
+
           # Also store it for other jobs
           mkdir -p ./artifacts
           echo "${TAG}" > ./artifacts/image-tag.txt
@@ -164,134 +158,17 @@ jobs:
               repo: context.repo.repo,
               title: `New image built for SIT: ${tag}`,
               body: `A new image has been built and is ready for testing in SIT environment.
-            
+
               **Image Tag:** \`${tag}\`
               **Built from commit:** [${process.env.GITHUB_SHA.substring(0,7)}](https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${process.env.GITHUB_SHA})
               **Built at:** ${new Date().toISOString()}
-            
+
               To promote this image to UAT after testing:
               1. Go to Actions -> CI/CD Pipeline -> "Run workflow"
               2. Select:
                  - Branch: \`uat\`
                  - Environment: \`uat\`
                  - Image tag: \`${tag}\`
-            
+
               [Run workflow](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/workflows/ci-cd.yml)`
             });
-
-#  deploy-to-sit:
-#    name: Deploy to SIT
-#    needs: [build-and-test, build-and-push-image]
-#    if: |
-#      always() &&
-#      needs.build-and-test.result == 'success' &&
-#      (
-#        (github.event_name == 'push' && github.ref == 'refs/heads/sit') ||
-#        (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'sit')
-#      )
-#    runs-on: ubuntu-latest
-#    environment:
-#      name: sit
-#      url: https://sit.conan.example.com
-#
-#    steps:
-#      - name: Checkout code
-#        uses: actions/checkout@v4
-#
-#      - name: Get image tag
-#        id: get_image_tag
-#        run: |
-#          # Use manually specified tag if provided
-#          if [[ -n "${{ github.event.inputs.image_tag }}" ]]; then
-#            echo "tag=${{ github.event.inputs.image_tag }}" >> $GITHUB_OUTPUT
-#            echo "Using manually specified tag: ${{ github.event.inputs.image_tag }}"
-#          else
-#            # Otherwise use the tag from the build job
-#            echo "tag=${{ needs.build-and-push-image.outputs.image_tag }}" >> $GITHUB_OUTPUT
-#            echo "Using build job tag: ${{ needs.build-and-push-image.outputs.image_tag }}"
-#          fi
-#
-#      - name: Update Kubernetes manifests
-#        env:
-#          REGISTRY: ${{ env.REGISTRY }}
-#          IMAGE_NAME: ${{ env.IMAGE_NAME }}
-#          IMAGE_TAG: ${{ steps.get_image_tag.outputs.tag }}
-#        run: |
-#          echo "Updating manifests for SIT environment with image: ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
-#          sed -i "s|image: .*|image: ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}|g" k8s/overlays/sit/deployment.yaml
-#
-#      - name: Commit and push updated manifests
-#        run: |
-#          git config --global user.name 'GitHub Actions'
-#          git config --global user.email 'github-actions@github.com'
-#          git add k8s/overlays/sit/deployment.yaml
-#          git commit -m "Update SIT deployment to use image tag ${IMAGE_TAG}"
-#          git push
-#
-#  deploy-to-uat:
-#    name: Deploy to UAT
-#    needs: [build-and-test]
-#    if: |
-#      always() &&
-#      needs.build-and-test.result == 'success' &&
-#      github.event_name == 'workflow_dispatch' &&
-#      github.event.inputs.environment == 'uat'
-#    runs-on: ubuntu-latest
-#    environment:
-#      name: uat
-#      url: https://uat.conan.example.com
-#
-#    steps:
-#      - name: Checkout code
-#        uses: actions/checkout@v4
-#
-#      - name: Update Kubernetes manifests
-#        env:
-#          REGISTRY: ${{ env.REGISTRY }}
-#          IMAGE_NAME: ${{ env.IMAGE_NAME }}
-#          IMAGE_TAG: ${{ github.event.inputs.image_tag }}
-#        run: |
-#          echo "Updating manifests for UAT environment with image: ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
-#          sed -i "s|image: .*|image: ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}|g" k8s/overlays/uat/deployment.yaml
-#
-#      - name: Commit and push updated manifests
-#        run: |
-#          git config --global user.name 'GitHub Actions'
-#          git config --global user.email 'github-actions@github.com'
-#          git add k8s/overlays/uat/deployment.yaml
-#          git commit -m "Update UAT deployment to use image tag ${IMAGE_TAG}"
-#          git push
-#
-#  deploy-to-prod:
-#    name: Deploy to Production
-#    needs: [build-and-test]
-#    if: |
-#      always() &&
-#      needs.build-and-test.result == 'success' &&
-#      github.event_name == 'workflow_dispatch' &&
-#      github.event.inputs.environment == 'prod'
-#    runs-on: ubuntu-latest
-#    environment:
-#      name: prod
-#      url: https://conan.example.com
-#
-#    steps:
-#      - name: Checkout code
-#        uses: actions/checkout@v4
-#
-#      - name: Update Kubernetes manifests
-#        env:
-#          REGISTRY: ${{ env.REGISTRY }}
-#          IMAGE_NAME: ${{ env.IMAGE_NAME }}
-#          IMAGE_TAG: ${{ github.event.inputs.image_tag }}
-#        run: |
-#          echo "Updating manifests for Production environment with image: ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
-#          sed -i "s|image: .*|image: ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}|g" k8s/overlays/prod/deployment.yaml
-#
-#      - name: Commit and push updated manifests
-#        run: |
-#          git config --global user.name 'GitHub Actions'
-#          git config --global user.email 'github-actions@github.com'
-#          git add k8s/overlays/prod/deployment.yaml
-#          git commit -m "Update Production deployment to use image tag ${IMAGE_TAG}"
-#          git push
